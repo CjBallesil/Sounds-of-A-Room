@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerPickUpDrop : MonoBehaviour
 {
     [SerializeField] private Transform playerCameraTransform;
+    [SerializeField] private Transform objectGrabPointTransform;
     [SerializeField] private LayerMask pickUpLayerMask;
 
     // Update is called once per frame
@@ -15,7 +16,10 @@ public class PlayerPickUpDrop : MonoBehaviour
             float pickUpDistance = 5f;
             if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
             {
-                Debug.Log("Raycast hit " + raycastHit.transform.name);
+                if (raycastHit.transform.TryGetComponent(out ObjectGrabbable objectGrabbable))
+                {
+                    objectGrabbable.Grab(objectGrabPointTransform);
+                }
             }
         }
     }
