@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 417744723}
   - component: {fileID: 417744722}
   - component: {fileID: 417744721}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MusicBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +715,7 @@ MonoBehaviour:
   playerCameraTransform: {fileID: 963194228}
   pickUpLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!1 &2020387024
 GameObject:
   m_ObjectHideFlags: 0
