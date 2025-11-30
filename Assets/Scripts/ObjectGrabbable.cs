@@ -16,13 +16,16 @@ public class ObjectGrabbable : MonoBehaviour
     public void Grab(Transform objectGrabPointTransform)
     {
         this.objectGrabPointTransform = objectGrabPointTransform;
+        objectRigidbody.useGravity = false;
     }
 
     private void FixedUpdate()
     {
         if (objectGrabPointTransform != null)
         {
-            objectRigidbody.MovePosition(objectGrabPointTransform.position);
+            float lerpSpeed = 20f;
+            Vector3 newPosition = Vector3.Lerp(objectGrabPointTransform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
+            objectRigidbody.MovePosition(newPosition);
         }
     }
 }
