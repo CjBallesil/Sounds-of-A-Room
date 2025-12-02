@@ -7,6 +7,7 @@ public class PlayerPickUpDrop : MonoBehaviour
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private Transform objectGrabPointTransform;
     [SerializeField] private LayerMask pickUpLayerMask;
+    public AudioSource pickUpAudioSource;
 
     private ObjectGrabbable objectGrabbable;
 
