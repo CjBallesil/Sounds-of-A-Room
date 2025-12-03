@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour, IInteractable
 {
+    [SerializeField] private Light lightComponent;
+
     public bool CanInteract()
     {
-        throw new System.NotImplementedException();
+        return true;
     }
 
     public bool Interact(Interactor interactor)
     {
-        throw new System.NotImplementedException();
+        if (lightComponent != null)
+        {
+            lightComponent.enabled = !lightComponent.enabled;
+            Debug.Log($"{gameObject.name} toggled {lightComponent.name}");
+            return true;
+        }
+        Debug.LogWarning($"{gameObject.name} has no light assigned!");
+        return false;
     }
+        
 }
