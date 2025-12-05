@@ -5,6 +5,10 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour, IInteractable
 {
     [SerializeField] private Light lightComponent;
+    [SerializeField] private AudioSource audioSource;
+
+    [SerializeField] private AudioClip lightOffSound;
+    [SerializeField] private AudioClip lightOnSound;
 
     public bool CanInteract()
     {
@@ -15,6 +19,17 @@ public class NewBehaviourScript : MonoBehaviour, IInteractable
     {
         if (lightComponent != null)
         {
+            if (lightComponent.enabled == true)
+            {
+                //light is on, turn off
+                audioSource.clip = lightOffSound;
+            }
+            if(lightComponent.enabled == false)
+            {
+                //light is off, turn on
+                audioSource.clip = lightOnSound;
+            }
+            audioSource.Play();
             lightComponent.enabled = !lightComponent.enabled;
             Debug.Log($"{gameObject.name} toggled {lightComponent.name}");
             return true;

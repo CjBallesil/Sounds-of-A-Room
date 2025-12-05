@@ -11,6 +11,10 @@ public class DrawerInteraction : MonoBehaviour, IInteractable
     [SerializeField] private float moveDuration = .5f;
     [SerializeField] private SlideAxis slideAxis = SlideAxis.Forward;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
+
     private bool isOpen = false;
     private Vector3 closedLocalPosition;
     private Coroutine moveRoutine;
@@ -53,6 +57,17 @@ public class DrawerInteraction : MonoBehaviour, IInteractable
             : closedLocalPosition + GetOpenOffset();
 
         moveRoutine = StartCoroutine(MoveDrawer(transform.localPosition, targetPos));
+
+        //determine sound clip based on open/closed state
+        if (isOpen == true)
+        {
+            audioSource.clip = closeSound;
+        }
+        if (isOpen == false)
+        {
+            audioSource.clip = openSound;
+        }
+        audioSource.Play();
 
         isOpen = !isOpen;
         return true;
