@@ -319,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a1eaa427ccb595b428f1ce57d6aa83bf, type: 3}
       propertyPath: m_Name
-      value: Decoration_Light_Switch_03
+      value: LightSwitch
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a1eaa427ccb595b428f1ce57d6aa83bf, type: 3}
       propertyPath: m_Layer
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 380322784}
   - component: {fileID: 380322783}
   m_Layer: 3
-  m_Name: BedFrame13_Drawer01 (1)
+  m_Name: BedDrawer 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2466,7 +2466,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2588,27 +2588,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
   m_PrefabInstance: {fileID: 1360106087}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1108206591
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1108206585}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.010528983, y: 0.021229427, z: 0.0015021053}
-  m_Center: {x: 0, y: -0.0001385926, z: 0.005059423}
 --- !u!65 &1108206592
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3281,6 +3260,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 26b14105f13ab2a4593723aee4faef53, type: 2}
+    - target: {fileID: -2865844372540139369, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
+      propertyPath: m_Name
+      value: Mattress
+      objectReference: {fileID: 0}
     - target: {fileID: -926784840425399268, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -3306,8 +3289,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 43648c5a4e1948d499b23786034c07ff, type: 2}
     - target: {fileID: 3475104915957447136, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
+      propertyPath: m_Name
+      value: BedDrawer 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475104915957447136, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115391879956880522, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
+      propertyPath: m_Name
+      value: Blanket
       objectReference: {fileID: 0}
     - target: {fileID: 4115391879956880522, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
       propertyPath: m_Layer
@@ -3340,9 +3331,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1108206586}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1108206591}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1108206592}
@@ -3379,6 +3367,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4115391879956880522, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1447622165}
+    - targetCorrespondingSourceObject: {fileID: -2865844372540139369, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1506750167}
   m_SourcePrefab: {fileID: 100100000, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
 --- !u!1 &1360106090 stripped
 GameObject:
@@ -3756,7 +3747,7 @@ GameObject:
   - component: {fileID: 1411190423}
   - component: {fileID: 1411190422}
   m_Layer: 3
-  m_Name: BedFrame13_Drawer01 (2)
+  m_Name: BedDrawer 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4131,6 +4122,32 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0, z: -2.3283064e-10}
     m_Extent: {x: 0.0072964476, y: 0.008778793, z: 0.002140483}
   m_DirtyAABB: 0
+--- !u!1 &1506750163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2865844372540139369, guid: fe69a632a0a939341b3261dc44d29100, type: 3}
+  m_PrefabInstance: {fileID: 1360106087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1506750167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506750163}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.010405117, y: 0.020425538, z: 0.0018000004}
+  m_Center: {x: 0, y: -0.0000000018626451, z: -0.0000000013969839}
 --- !u!1001 &1517362547
 PrefabInstance:
   m_ObjectHideFlags: 0
