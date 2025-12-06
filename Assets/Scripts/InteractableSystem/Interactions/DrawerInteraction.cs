@@ -7,10 +7,12 @@ public class DrawerInteraction : MonoBehaviour, IInteractable
 
     public enum SlideAxis { Forward, Back, Right, Left, Up, Down}
 
+    [Header("Drawer Settings")]
     [SerializeField] private float openDistance = 0.001f;
     [SerializeField] private float moveDuration = .5f;
     [SerializeField] private SlideAxis slideAxis = SlideAxis.Forward;
 
+    [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip openSound;
     [SerializeField] private AudioClip closeSound;
@@ -18,6 +20,9 @@ public class DrawerInteraction : MonoBehaviour, IInteractable
     private bool isOpen = false;
     private Vector3 closedLocalPosition;
     private Coroutine moveRoutine;
+
+    //track stored objects
+    private readonly List<GameObject> storedObjects = new List<GameObject>();
 
     private void Awake()
     {
@@ -47,10 +52,8 @@ public class DrawerInteraction : MonoBehaviour, IInteractable
     {
         Debug.Log("Drawer Interact called!");
         //stop any ongoing animation before starting a new one
-        if(moveRoutine != null)
-        {
-            StopCoroutine(moveRoutine);
-        }
+        if(moveRoutine != null) StopCoroutine(moveRoutine);
+        moveRoutine = null;
 
         //decide target based on open/closed state
         Vector3 targetPos = isOpen ? closedLocalPosition
@@ -59,14 +62,7 @@ public class DrawerInteraction : MonoBehaviour, IInteractable
         moveRoutine = StartCoroutine(MoveDrawer(transform.localPosition, targetPos));
 
         //determine sound clip based on open/closed state
-        if (isOpen == true)
-        {
-            audioSource.clip = closeSound;
-        }
-        if (isOpen == false)
-        {
-            audioSource.clip = openSound;
-        }
+        audioSource.clip = isOpen ? closeSound : openSound;
         audioSource.Play();
 
         isOpen = !isOpen;
