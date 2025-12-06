@@ -6,7 +6,13 @@ public class GramophoneInteraction : MonoBehaviour, IInteractable, IObjectHolder
 {
     [Header("Gramophone Setup")]
     [SerializeField] private Transform discPosition; //where disc sits in gramophone
+
+    [Header("Sounds")]
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource discFXSource;
+    [SerializeField] private AudioClip startSound;
+    [SerializeField] private AudioClip endSound;
+    [SerializeField] private AudioClip crackleSound;
 
     private GameObject currentDiscObject;
     private DiscData currentDiscData;
@@ -70,9 +76,19 @@ public class GramophoneInteraction : MonoBehaviour, IInteractable, IObjectHolder
     private void StartPlayback()
     {
         if (currentDiscData != null && currentDiscData.TrackClip() != null) {
+
+            //start sound
+            discFXSource.PlayOneShot(startSound);
+
+            //start crackle loop
+            discFXSource.clip = crackleSound;
+            discFXSource.loop = true;
+            discFXSource.PlayDelayed(startSound.length);
+            isPlaying = true;
+
+            //play disc track
             audioSource.clip = currentDiscData.TrackClip();
             audioSource.Play();
-            isPlaying = true;
 
             //start spinning
             DiscSpin spin = currentDiscObject.GetComponent<DiscSpin>();
@@ -82,11 +98,19 @@ public class GramophoneInteraction : MonoBehaviour, IInteractable, IObjectHolder
 
     private void StopPlayback()
     {
-       if (currentDiscObject != null)
-        {
-            audioSource.Stop();
-            isPlaying = false;
+        //stop music
+        audioSource.Stop();
 
+        //stop crackle loop
+        discFXSource.Stop();
+
+        //play stop sound once
+        discFXSource.PlayOneShot(endSound);
+
+        isPlaying = false;
+
+        if (currentDiscObject != null)
+        {
             //stop spinning
             DiscSpin spin = currentDiscObject.GetComponent<DiscSpin>();
             if (spin != null) spin.StopSpinning();
