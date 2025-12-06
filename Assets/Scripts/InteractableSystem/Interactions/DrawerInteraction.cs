@@ -7,7 +7,7 @@ public class DrawerInteraction : MonoBehaviour, IInteractable
 
     public enum SlideAxis { Forward, Back, Right, Left, Up, Down}
 
-    [SerializeField] private float openDistance = 0.0005f;
+    [SerializeField] private float openDistance = 0.001f;
     [SerializeField] private float moveDuration = .5f;
     [SerializeField] private SlideAxis slideAxis = SlideAxis.Forward;
 

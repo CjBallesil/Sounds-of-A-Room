@@ -7,6 +7,7 @@ public class ObjectGrabbable : MonoBehaviour
 
     private Rigidbody objectRigidbody;
     private Transform objectGrabPointTransform;
+    private int originalLayer;
 
     private void Awake()
     {
@@ -17,12 +18,20 @@ public class ObjectGrabbable : MonoBehaviour
     {
         this.objectGrabPointTransform = objectGrabPointTransform;
         objectRigidbody.useGravity = false;
+        originalLayer = gameObject.layer;
+        gameObject.layer = LayerMask.NameToLayer("Held Object");
     }
 
     public void Drop()
     {
         this.objectGrabPointTransform = null;
         objectRigidbody.useGravity = true;
+        ReturnToLayer();
+    }
+
+    public void ReturnToLayer()
+    {
+        gameObject.layer = originalLayer;
     }
 
     private void FixedUpdate()

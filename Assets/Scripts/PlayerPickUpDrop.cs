@@ -10,6 +10,7 @@ public class PlayerPickUpDrop : MonoBehaviour
     public AudioSource pickUpAudioSource;
 
     private ObjectGrabbable objectGrabbable;
+    public ObjectGrabbable HeldObject => objectGrabbable;
 
     // Update is called once per frame
     private void Update()
@@ -22,8 +23,16 @@ public class PlayerPickUpDrop : MonoBehaviour
                 float pickUpDistance = 5f;
                 if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
                 {
+                    Debug.Log("Pickup ray hit: " + raycastHit.collider.name);
                     if (raycastHit.transform.TryGetComponent(out objectGrabbable))
                     {
+                        //check if object is inside holder
+                        IObjectHolder holder = raycastHit.transform.GetComponentInParent<IObjectHolder>();
+                        if (holder != null)
+                        {
+                            holder.ReleaseObject(raycastHit.transform.gameObject);
+                        }
+
                         Debug.Log("Hit: " + raycastHit.collider.name);
                         objectGrabbable.Grab(objectGrabPointTransform);
                     }
@@ -36,5 +45,10 @@ public class PlayerPickUpDrop : MonoBehaviour
                 objectGrabbable = null;
             }
         }
+    }
+
+    public void ForceClearHeldObject()
+    {
+        objectGrabbable = null;
     }
 }
