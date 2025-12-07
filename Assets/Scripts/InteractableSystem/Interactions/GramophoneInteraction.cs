@@ -101,8 +101,12 @@ public class GramophoneInteraction : MonoBehaviour, IInteractable, IObjectHolder
         //stop music
         audioSource.Stop();
 
-        //stop crackle loop
-        discFXSource.Stop();
+        // stop crackle loop (but don't Stop() the source yet)
+        if (discFXSource.isPlaying && discFXSource.clip == crackleSound)
+        {
+            discFXSource.loop = false;
+            discFXSource.Stop();
+        }
 
         //play stop sound once
         discFXSource.PlayOneShot(endSound);
@@ -135,12 +139,15 @@ public class GramophoneInteraction : MonoBehaviour, IInteractable, IObjectHolder
     {
         if (currentDiscObject == discObject)
         {
+            if (isPlaying)
+            {
+                StopPlayback();
+            }
             currentDiscObject.transform.SetParent(null);
             currentDiscObject = null;
             currentDiscData = null;
             isPlaying = false;
 
-            audioSource.Stop();
             Debug.Log("Disc released from gramophone");
         }
     }
