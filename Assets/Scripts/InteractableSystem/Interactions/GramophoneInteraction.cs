@@ -151,4 +151,12 @@ public class GramophoneInteraction : MonoBehaviour, IInteractable, IObjectHolder
             Debug.Log("Disc released from gramophone");
         }
     }
+
+    private void Update()
+    {
+        if (isPlaying && audioSource.clip != null && !audioSource.isPlaying)
+        {
+            StopPlayback();
+        }
+    }
 }
